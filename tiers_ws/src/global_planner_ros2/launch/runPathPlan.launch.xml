@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    
+    <!-- PARAMETERS -->
+    <!-- <param name="movingControl/objectmapPath" value="/home/jimi/.ros" /> -->
+    <!-- <param name="movingControl/robot_size" value="0.5" /> -->
+    <!-- <param name="movingControl/robot_margin" value="0.5" /> -->
+
+    <include file="$(find gazebo_ros)/launch/gazebo.launch.py">
+        <arg name="world_name" value="$(find saslam)/launch/willowgarage.world"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="false"/> <!-- Inert - see gazebo_ros_pkgs issue #491 -->
+        <arg name="recording" value="false"/><arg name="debug" value="false"/>
+    </include>
+    
+    <node name="pathplan" pkg="saslam" type="pathplan" output="screen">
+        <!-- SUBSCRIBE -->
+        <remap from="/saslam/pathplan/crtState" to="/initialpose"/>
+        <remap from="/saslam/pathplan/goal" to="/move_base_simple/goal"/>
+        <remap from="/saslam/pathplan/waypoint" to="/clicked_point"/>
+        <!-- PUBLISH -->
+        <remap from="/saslam/pathplan/nextWaypt" to="/targetWaypoint"/>
+        <remap from="/saslam/pathplan/wayPoint" to="/pathplan/view/waypoint"/>
+        <remap from="/saslam/pathplan/splinedWayPoint" to="/pathplan/view/splinedwaypoint"/>
+    </node>
+
+    <let name="rviz_config" value="$(find-pkg-share saslam)/launch/demo.rviz" output="log" />
+    <node name="rviz2" pkg="rviz2" exec="rviz2" args="-d $(var rviz_config)"/>
+
+</launch>

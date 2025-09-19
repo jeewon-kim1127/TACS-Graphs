@@ -1,0 +1,21 @@
+procs:
+  trip:
+    shell: 'bash -c "source /opt/ros/foxy/setup.bash && source ~/workspaces/s-graph/install/setup.bash && source ~/workspaces/trip_ws/install/setup.bash && ros2 launch trip run_tiers_TRIP.py"'
+    autostart: true
+  travel:
+    shell: 'bash -c "source /opt/ros/foxy/setup.bash && source ~/workspaces/trip_ws/install/setup.bash && ros2 launch travel btms_trip_run_ros2.launch.py"'
+    autostart: true
+  base_tf:
+    shell: 'bash -c "source /opt/ros/foxy/setup.bash && source ~/workspaces/tiers_ws/install/setup.bash && ros2 run tiers lidar_calibrate"'
+    autostart: true
+    stop: SIGINT
+  s_graphs:
+    shell: 'bash -c "source /opt/ros/foxy/setup.bash && source ~/workspaces/s-graph/install/setup.bash && ros2 launch lidar_situational_graphs ts_graphs_launch.py room_segmentation:=traversable compute_odom:=true output_file:=/root/workspaces/s-graph/data lidar_topic:=/a_os0 imu_topic:=/os0_cloud_node/imu base_frame:=base_link"'
+    autostart: true
+  rviz:
+    shell: 'bash -c "source /opt/ros/foxy/setup.bash && source ~/workspaces/s-graph/install/setup.bash && rviz2 -d ~/workspaces/s-graph/lidar_situational_graphs/rviz/s_graphs_ros2.rviz"'
+    autostart: true
+  rosbag:
+    shell: 'sleep 5 && bash -c "source /opt/ros/foxy/setup.bash && source ~/workspaces/s-graph/install/setup.bash && ros2 bag play ~/Downloads/Indoor10/Indoor10.db3"'
+    autostart: true
+    stop: SIGINT

@@ -1,0 +1,17 @@
+procs:
+  trip:
+    shell: 'bash -c "source ~/workspaces/mprocs/ros2.sh && ros2 launch trip run_tiers_TRIP.py"'
+    autostart: true
+  travel:
+    shell: 'bash -c "source ~/workspaces/mprocs/ros2.sh && ros2 launch travel btms_trip_run_ros2.launch.py"'
+    autostart: true
+  s_graphs:
+    shell: 'bash -c "source ~/workspaces/mprocs/ros2.sh && ros2 launch lidar_situational_graphs complicated_env_launch.py room_segmentation:=traversable compute_odom:=false base_link_frame:=body output_file:=/root/workspaces/s-graph/data"'
+    autostart: true
+  rviz:
+    shell: 'bash -c "source ~/workspaces/mprocs/ros2.sh && rviz2 -d ~/workspaces/s-graph/lidar_situational_graphs/rviz/s_graphs_ros2.rviz"'
+    autostart: true
+  rosbag:
+    shell: 'bash -c "sleep 2 && source ~/workspaces/mprocs/ros2.sh && ros2 bag play ~/Downloads/real"'
+    autostart: true
+    stop: SIGINT

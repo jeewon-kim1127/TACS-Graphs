@@ -1,0 +1,11 @@
+procs:
+  rosbag:
+    shell: 'bash -c "sleep 1 && source ~/workspaces/mprocs/ros2.sh && ros2 bag play ~/Downloads/KIexp/KIexp.db3"'
+    autostart: true
+    stop: SIGINT
+  s_graphs:
+    shell: 'bash -c "source ~/workspaces/mprocs/ros2.sh && ros2 launch lidar_situational_graphs s_graphs_launch.py lidar_topic:=/dreamstep_cloud_body odom_topic:=/dreamstep_odom imu_topic:=/go1_mti30/imu/data compute_odom:=false base_link_frame:=imu_link base_frame:=imu_link odom_frame:=base_imu_link"'
+    autostart: true
+  rviz:
+    shell: 'bash -c "source ~/workspaces/mprocs/ros2.sh && rviz2 -d ~/workspaces/s_graphs/lidar_situational_graphs/rviz/s_graphs_ros2.rviz"'
+    autostart: true

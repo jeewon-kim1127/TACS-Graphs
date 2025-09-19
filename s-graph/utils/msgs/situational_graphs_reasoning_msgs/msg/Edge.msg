@@ -1,0 +1,8 @@
+int64 origin_node
+int64 target_node
+int64 edge_id
+float64[4] plane_coefficients
+float64[9] plane_information_matrix
+std_msgs/Float64MultiArray information_matrix
+geometry_msgs/Transform measurement_transform
+Attribute[] attributes

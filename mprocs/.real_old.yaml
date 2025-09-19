@@ -1,0 +1,17 @@
+procs:
+  sparse_graph:
+    shell: 'bash -c "source ~/workspaces/mprocs/ros1.sh && roslaunch voxblox_skeleton skeletonize_map_realtime.launch"'
+    autostart: true
+  ros1_bridge:
+    shell: 'bash -c "sleep 1 && source ~/workspaces/mprocs/ros1.sh && source ~/workspaces/mprocs/ros2.sh && ros2 run ros1_bridge dynamic_bridge"'
+    autostart: true
+  rosbag:
+    shell: 'bash -c "sleep 2 && source ~/workspaces/mprocs/ros2.sh && ros2 bag play ~/Downloads/real"'
+    autostart: true
+    stop: SIGINT
+  s_graphs:
+    shell: 'bash -c "sleep 1 && source ~/workspaces/mprocs/ros2.sh && ros2 launch lidar_situational_graphs s_graphs_launch.py room_segmentation:=old compute_odom:=false base_link_frame:=body"'
+    autostart: true
+  rviz:
+    shell: 'bash -c "source ~/workspaces/mprocs/ros2.sh && rviz2 -d ~/workspaces/s-graph/lidar_situational_graphs/rviz/s_graphs_ros2.rviz"'
+    autostart: true

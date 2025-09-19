@@ -1,0 +1,17 @@
+procs:
+  trip:
+    shell: 'bash -c "source ~/workspaces/mprocs/ros2.sh && ros2 launch trip run_TRIP.py"'
+    autostart: true
+  travel:
+    shell: 'bash -c "source ~/workspaces/mprocs/ros2.sh && ros2 launch travel btms_trip_run_ros2.launch.py"'
+    autostart: true
+  s_graphs:
+    shell: 'bash -c "source ~/workspaces/mprocs/ros2.sh && ros2 launch lidar_situational_graphs ts_graphs_launch.py room_segmentation:=traversable lidar_topic:=/dreamstep_cloud_body odom_topic:=/dreamstep_odom compute_odom:=false imu_topic:=/go1_mti30/imu/data base_frame:=base_imu_link output_file:=/root/workspaces/s-graph/data"' #/trip/trip_updated/alocal_dense_cloud
+    autostart: true
+  rviz:
+    shell: 'bash -c "source ~/workspaces/mprocs/ros2.sh && rviz2 -d ~/workspaces/s-graph/lidar_situational_graphs/rviz/s_graphs_ros2.rviz"'
+    autostart: true
+  rosbag:
+    shell: 'bash -c "sleep 1 && source ~/workspaces/mprocs/ros2.sh && ros2 bag play ~/Downloads/keit/keit.db3"'
+    autostart: true
+    stop: SIGINT

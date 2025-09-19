@@ -1,0 +1,19 @@
+sudo docker run -dit \
+  --network=host \
+  --privileged \
+  -e DISPLAY=:$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+  -v /home/jeewonkim/sgraph_ws/workspaces:/root/workspaces \
+  --device=/dev/sda1:/dev/sda1:rw \
+  -w /root \
+  --name s_graphs_container2 s_graphs
+
+  -v /media/jeewonkim/URL_G1/Tiers:/root/Downloads/Tiers \
+  
+apt-get update
+apt-get install gedit
+
+pip install cmake --upgrade
+pip install transforms3d
+
+

@@ -1,0 +1,10 @@
+free_thresh: 0.9
+image: /home/jeewonkim/sgraph_ws/workspaces/tiers_ws/src/map_publisher/map_publisher/pgm/1F.pgm
+mode: trinary
+negate: 0
+occupied_thresh: 0.95
+origin:
+- -102.4
+- -102.4
+- 0.0
+resolution: 0.1

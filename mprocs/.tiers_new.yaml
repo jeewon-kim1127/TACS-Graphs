@@ -1,0 +1,11 @@
+procs:
+  s_graphs:
+    shell: 'bash -c "sleep 1 && source ~/workspaces/mprocs/ros2.sh && ros2 launch lidar_situational_graphs s_graphs_launch.py room_segmentation:=new lidar_topic:=/a_os0 compute_odom:=true imu_topic:=/os0_cloud_node/imu base_frame:=base_link"'
+    autostart: true
+  rviz:
+    shell: 'bash -c "sleep 1 && source ~/workspaces/mprocs/ros2.sh && rviz2 -d ~/workspaces/s-graph/lidar_situational_graphs/rviz/s_graphs_ros2.rviz"'
+    autostart: true
+  rosbag:
+    shell: 'bash -c "sleep 2 && source ~/workspaces/mprocs/ros2.sh && ros2 bag play ~/Downloads/Indoor10/Indoor10.db3 -l"'
+    autostart: true
+    stop: SIGINT
