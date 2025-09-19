@@ -3,9 +3,8 @@ trip_ws/*
 s-graph/build/*
 s-graph/install/*
 s-graph/log/*
-s_graphs_ros1_ws/build/*
-s_graphs_ros1_ws/install/*
-s_graphs_ros1_ws/log/*
+s_graphs_ros1_ws/*
 tiers_ws/build/*
 tiers_ws/install/*
 tiers_ws/log/*
+tiers_ws/QuadTerrainRecon/*
